@@ -37,8 +37,7 @@ jobs:
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add oisd-stash.yaml
             git commit -m "chore: update oisd-stash.yaml [skip ci]"
-            # dùng GITHUB_TOKEN để push
-            git push
+            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
           else
             echo "No changes to commit."
           fi
