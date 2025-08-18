@@ -1,0 +1,44 @@
+name: Build OISD YAML
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    # chạy hằng ngày 02:00 UTC (đổi giờ tùy mày)
+    - cron: "0 2 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Convert list to YAML
+        run: |
+          python convert.py
+
+      - name: Commit changes if any
+        run: |
+          set -e
+          if git status --porcelain | grep -q "oisd-stash.yaml"; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add oisd-stash.yaml
+            git commit -m "chore: update oisd-stash.yaml [skip ci]"
+            # dùng GITHUB_TOKEN để push
+            git push
+          else
+            echo "No changes to commit."
+          fi
