@@ -1,7 +1,7 @@
 # Sources:
 # - https://big.oisd.nl/domainswild2 (plain: +204484 block)
 # - https://abpvn.com/filter/abpvn-4h23Hh.txt (ABP: +287 block, +46 allow)
-# Generated: 2025-08-18T11:08:45Z
+# Generated: 2025-08-18T11:17:37Z
 payload:
   - '4.bp.blogspot.com'
   - 'alwingulla.com'
