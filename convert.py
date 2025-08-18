@@ -11,8 +11,6 @@ from datetime import datetime
 SOURCE_URLS = [
     # Host/domain lists
     "https://big.oisd.nl/domainswild2",
-    # ABPVN (Adblock Plus syntax)
-    "https://abpvn.com/filter/abpvn-4h23Hh.txt",
 ]
 OUT_BLOCK = "oisd-stash.yaml"     # output chặn (payload gồm domain)
 OUT_ALLOW = "allowlist.yaml"      # output whitelist (nếu có domain)
